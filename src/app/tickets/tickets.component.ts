@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { TicketResponseModel } from '../models/TicketResponseModel';
+import { TicketsService } from '../services/tickets.service';
 
 @Component({
   selector: 'app-tickets',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TicketsComponent implements OnInit {
 
-  constructor() { }
+  ticketsArray: TicketResponseModel[] = [];
+  emptyMessage: string = "There are no tickets for your account."
+
+  constructor(private ticketsService: TicketsService) { }
 
   ngOnInit(): void {
+    this.ticketsService.getTickets().subscribe(s => {
+      this.ticketsArray = s;
+      if (this.ticketsArray.length > 0){
+        this.emptyMessage = "";
+      }
+    })
   }
 
 }
