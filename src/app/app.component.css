@@ -10,8 +10,9 @@ mat-toolbar span {
     flex: 1 1 auto;
 }
 
-.welcome-msg {
+.home-page {
     color: rgb(41, 41, 41);
+    cursor: pointer;
 }
 
 .nav-route {
