@@ -1,0 +1,35 @@
+mat-toolbar {
+    background-color: #f8f8ff;
+    border-bottom: 1px #d4d4d4 solid;
+    font: 500 20px/32px Roboto, "Helvetica Neue", sans-serif;
+    position: fixed;
+    z-index: 1000;
+}
+
+mat-toolbar span {
+    flex: 1 1 auto;
+}
+
+.welcome-msg {
+    color: rgb(41, 41, 41);
+}
+
+.nav-route {
+    color: rgb(41, 41, 41)
+}
+
+.nav-route:hover {
+    color: black;
+    border-bottom: 2px solid #054b93;
+}
+
+.nav-route:focus {
+    color: black;
+    border-bottom: 2px solid #054b93;
+}
+
+
+#routes {
+    display: flex;
+    justify-content: space-evenly;
+}
