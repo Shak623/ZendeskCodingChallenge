@@ -13,7 +13,7 @@ export class TicketsService {
   constructor(private httpClient: HttpClient) { }
 
   getTickets(): Observable<TicketResponseModel[]> {
-    const url = `${environment.apiUrl}/tickets.json`
+    const url = `${environment.apiUrl}/api/tickets`
     return this.httpClient.get<TicketResponseModel[]>(url);
   }
 }

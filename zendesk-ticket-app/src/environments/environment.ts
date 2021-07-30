@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://zccsfarooq.zendesk.com/api/v2',
+  apiUrl: 'http://localhost:3080',
   authUrl: 'https://zccsfarooq.zendesk.com/oauth/authorizations/new?'
 };
 

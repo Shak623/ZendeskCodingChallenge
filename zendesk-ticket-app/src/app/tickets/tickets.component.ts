@@ -20,6 +20,7 @@ export class TicketsComponent implements OnInit {
       if (this.ticketsArray.length > 0){
         this.emptyMessage = "";
       }
+      console.log(this.ticketsArray);
     })
   }
 
