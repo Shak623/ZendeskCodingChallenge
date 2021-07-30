@@ -16,12 +16,22 @@ mat-toolbar span {
 }
 
 .nav-route {
-    color: rgb(41, 41, 41)
+    color: rgb(41, 41, 41);
+    display: inline-block;
 }
 
-.nav-route:hover {
+.nav-route::after {
+    content: '';
+    display: block;
+    border-bottom: 2px solid darkgray;
+    width: 0;
+    transition: width .2s ease;
+}
+
+.nav-route:hover::after {
     color: black;
     border-bottom: 2px solid darkgray;
+    width: 100%;
 }
 
 .nav-route:focus {
