@@ -23,7 +23,6 @@ body {
 
 table {
     z-index: 0;
-    margin-left: 90px;
     height: auto;
     border-collapse: collapse;
 }
@@ -34,4 +33,9 @@ table {
 
 .grow-route:hover {
     transform: scale(1.1);
+}
+
+.center-page {
+    display: flex;
+    justify-content: center;
 }
