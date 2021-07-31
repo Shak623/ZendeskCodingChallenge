@@ -1,0 +1,7 @@
+#my-tickets {
+    max-height: 550px;
+    overflow: hidden;
+    overflow-y: scroll;
+    display: table;
+    align-items: center;
+}

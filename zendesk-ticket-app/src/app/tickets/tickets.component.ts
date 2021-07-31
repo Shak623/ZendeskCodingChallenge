@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table'
 import { TicketResponseModel } from '../models/TicketResponseModel';
 import { TicketsService } from '../services/tickets.service';
 
@@ -10,7 +11,10 @@ import { TicketsService } from '../services/tickets.service';
 export class TicketsComponent implements OnInit {
 
   ticketsArray: TicketResponseModel[] = [];
+  displayedColumns: string[] = ["id", "subject", "updated_at", "status"];
   emptyMessage: string = "There are no tickets for your account."
+
+  dataSource: MatTableDataSource<TicketResponseModel> = new MatTableDataSource();
 
   constructor(private ticketsService: TicketsService) { }
 
@@ -20,7 +24,7 @@ export class TicketsComponent implements OnInit {
       if (this.ticketsArray.length > 0){
         this.emptyMessage = "";
       }
-      console.log(this.ticketsArray);
+      this.dataSource.data = this.ticketsArray;
     })
   }
 
