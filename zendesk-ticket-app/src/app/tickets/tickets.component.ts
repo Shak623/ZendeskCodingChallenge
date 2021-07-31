@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table'
 import { TicketResponseModel } from '../models/TicketResponseModel';
 import { TicketsService } from '../services/tickets.service';
@@ -8,24 +9,31 @@ import { TicketsService } from '../services/tickets.service';
   templateUrl: './tickets.component.html',
   styleUrls: ['./tickets.component.css']
 })
-export class TicketsComponent implements OnInit {
+export class TicketsComponent implements OnInit, AfterViewInit {
 
   ticketsArray: TicketResponseModel[] = [];
   displayedColumns: string[] = ["id", "subject", "updated_at", "status"];
-  emptyMessage: string = "There are no tickets for your account."
+  emptyMessage: string = ""
 
   dataSource: MatTableDataSource<TicketResponseModel> = new MatTableDataSource();
+
+  @ViewChild(MatPaginator)
+  paginator!: MatPaginator;
 
   constructor(private ticketsService: TicketsService) { }
 
   ngOnInit(): void {
     this.ticketsService.getTickets().subscribe(s => {
       this.ticketsArray = s;
-      if (this.ticketsArray.length > 0){
-        this.emptyMessage = "";
+      if (this.ticketsArray.length == 0){
+        this.emptyMessage = "There are no tickets for your account.";
       }
       this.dataSource.data = this.ticketsArray;
     })
+  }
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
   }
 
 }

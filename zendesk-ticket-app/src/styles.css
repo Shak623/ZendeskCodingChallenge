@@ -16,6 +16,18 @@ body {
     padding-top: 70px;
 }
 
+.no-tickets-message {
+    padding: 10px;
+    text-align: center;
+}
+
+table {
+    z-index: 0;
+    margin-left: 90px;
+    height: auto;
+    border-collapse: collapse;
+}
+
 .grow-route {
     transition: all .1s ease-in-out;
 }

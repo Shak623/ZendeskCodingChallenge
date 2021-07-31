@@ -1,6 +1,6 @@
 <h1 class="table-header">My Tickets</h1>
-<!-- <mat-paginator class="paginator" [pageSizeOptions]="[25, 50]" showFirstLastButtons></mat-paginator> -->
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+<mat-paginator class="paginator" [pageSizeOptions]="[25]" showFirstLastButtons></mat-paginator>
+<table mat-table id="my-tickets" [dataSource]="dataSource" class="mat-elevation-z8">
 
     <!-- Id Column -->
     <ng-container matColumnDef="id">
@@ -29,3 +29,4 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true" class="table-column-header"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
+<p class="no-tickets-message">{{emptyMessage}}</p>
