@@ -21,13 +21,13 @@ import { ITS_JUST_ANGULAR } from '@angular/core/src/r3_symbols';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     MatToolbarModule,
     MatListModule,
     HttpClientModule,
     MatPaginatorModule,
     MatTableModule,
-    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

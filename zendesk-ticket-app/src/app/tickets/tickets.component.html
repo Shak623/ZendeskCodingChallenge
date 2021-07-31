@@ -1,7 +1,6 @@
 <h1 class="table-header">My Tickets</h1>
-<mat-paginator class="paginator" [pageSizeOptions]="[25, 50]" showFirstLastButtons></mat-paginator>
-<table #table mat-table matSort id="my-tickets" [dataSource]="dataSource"
-matSortDirection="asc" multiTemplateDataRows>
+<!-- <mat-paginator class="paginator" [pageSizeOptions]="[25, 50]" showFirstLastButtons></mat-paginator> -->
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
     <!-- Id Column -->
     <ng-container matColumnDef="id">
