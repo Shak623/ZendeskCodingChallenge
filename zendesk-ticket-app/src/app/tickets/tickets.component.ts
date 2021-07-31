@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table'
 import { TicketResponseModel } from '../models/TicketResponseModel';
 import { TicketsService } from '../services/tickets.service';
@@ -17,8 +18,8 @@ export class TicketsComponent implements OnInit, AfterViewInit {
 
   dataSource: MatTableDataSource<TicketResponseModel> = new MatTableDataSource();
 
-  @ViewChild(MatPaginator)
-  paginator!: MatPaginator;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
   constructor(private ticketsService: TicketsService) { }
 
@@ -34,6 +35,7 @@ export class TicketsComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
 }
