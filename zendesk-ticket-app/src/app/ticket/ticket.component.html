@@ -1,4 +1,5 @@
 <h1 class="table-header" *ngIf="this.ticket">Ticket {{ticket.id}} Details</h1>
+<button mat-button (click)="goBack()">&lt; Back to Tickets</button>
 <div class="center-page">
     <mat-card id="ticket-card" *ngIf="this.ticket">
         <mat-card-header>

@@ -44,4 +44,8 @@ export class TicketComponent implements OnInit {
     window.location.href = `${window.location.protocol}//${window.location.host}/ticket/${id + 1}`;
   }
 
+  goBack(): void {
+    window.location.href = `${window.location.protocol}//${window.location.host}/tickets`;
+  }
+
 }
