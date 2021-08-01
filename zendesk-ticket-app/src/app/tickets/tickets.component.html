@@ -28,7 +28,8 @@
         </ng-container>
     
         <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true" class="table-column-header"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="displayData(row.id)"></tr>
     </table>
 </div>
 <p class="no-tickets-message">{{emptyMessage}}</p>
+<router-outlet></router-outlet>

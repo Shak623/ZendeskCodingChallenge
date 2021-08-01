@@ -2,6 +2,7 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table'
+import { Router } from '@angular/router';
 import { TicketResponseModel } from '../models/TicketResponseModel';
 import { TicketsService } from '../services/tickets.service';
 
@@ -21,7 +22,7 @@ export class TicketsComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private ticketsService: TicketsService) { }
+  constructor(private ticketsService: TicketsService, private router: Router) { }
 
   ngOnInit(): void {
     this.ticketsService.getTickets().subscribe(s => {
@@ -36,6 +37,12 @@ export class TicketsComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+  }
+
+  displayData(id: number) {
+    console.log(id);
+    this.router.navigate([`../ticket/${id}`]);
+    console.log(this.router);
   }
 
 }

@@ -5,8 +5,13 @@ import { TicketsComponent } from './tickets/tickets.component';
 
 const routes: Routes = [
   {
+    path: '',
+    redirectTo: '/tickets',
+    pathMatch: 'full'
+  },
+  {
     path: 'tickets',
-    component: TicketsComponent
+    component: TicketsComponent,
   },
   {
     path: 'ticket/:id',
