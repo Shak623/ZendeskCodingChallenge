@@ -13,18 +13,18 @@ export class TicketsService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getTickets(): Observable<TicketResponseModel[]> {
+  getTickets(): Observable<any> {
     const url = `${environment.apiUrl}/api/tickets`
-    return this.httpClient.get<TicketResponseModel[]>(url);
+    return this.httpClient.get<any>(url);
   }
 
-  getTicket(id: number): Observable<TicketResponseModel> {
+  getTicket(id: number): Observable<any> {
     const url = `${environment.apiUrl}/api/ticket/${id}`
-    return this.httpClient.get<TicketResponseModel>(url);
+    return this.httpClient.get<any>(url);
   }
 
-  getCount(): Observable<CountResponseModel> {
+  getCount(): Observable<any> {
     const url = `${environment.apiUrl}/api/tickets/count`;
-    return this.httpClient.get<CountResponseModel>(url);
+    return this.httpClient.get<any>(url);
   }
 }

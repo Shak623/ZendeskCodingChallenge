@@ -15,8 +15,9 @@ export class TicketsComponent implements OnInit, AfterViewInit {
 
   ticketsArray: TicketResponseModel[] = [];
   displayedColumns: string[] = ["id", "subject", "updated_at", "status"];
-  emptyMessage: string = ""
+  message: string = ""
   displayLoading: boolean = true;
+  error: boolean = false;
 
   dataSource: MatTableDataSource<TicketResponseModel> = new MatTableDataSource();
 
@@ -30,11 +31,17 @@ export class TicketsComponent implements OnInit, AfterViewInit {
       if (s) {
         this.hideLoader();
       }
-      this.ticketsArray = s;
-      if (this.ticketsArray.length == 0){
-        this.emptyMessage = "There are no tickets for your account.";
+      if (s.error) {
+        this.errorHasOccurred();
+        this.setMessage(`An error has occurred: ${s.error}`);
       }
-      this.dataSource.data = this.ticketsArray;
+      else {
+        this.ticketsArray = s;
+        if (this.ticketsArray.length == 0){
+          this.setMessage("There are no tickets for your account.");
+        }
+        this.dataSource.data = this.ticketsArray;
+      }
     })
   }
 
@@ -49,6 +56,14 @@ export class TicketsComponent implements OnInit, AfterViewInit {
 
   hideLoader() {
     this.displayLoading = false;
+  }
+
+  errorHasOccurred() {
+    this.error = true;
+  }
+
+  setMessage(msg: string){
+    this.message = msg;
   }
 
 }

@@ -3,7 +3,11 @@
         <span class="sr-only" id="loading"></span>
     </div>
 </div>
-<div [hidden]="displayLoading">
+<div *ngIf="error">
+    <h1 class="page-header">Something Went Wrong...</h1>
+    <p class="no-tickets-message">{{message}}</p>
+</div>
+<div [hidden]="displayLoading || error">
     <h1 class="page-header">My Tickets</h1>
     <mat-paginator class="paginator" [pageSizeOptions]="[25]" showFirstLastButtons></mat-paginator>
     <div class="center-page">
@@ -37,6 +41,6 @@
             <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="displayData(row.id)"></tr>
         </table>
     </div>
-    <p class="no-tickets-message">{{emptyMessage}}</p>
+    <p class="no-tickets-message">{{message}}</p>
 </div>
 <router-outlet></router-outlet>
