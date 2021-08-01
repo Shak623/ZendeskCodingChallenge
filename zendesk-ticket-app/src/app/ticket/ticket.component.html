@@ -9,9 +9,10 @@
             <p>{{ticket.description}}</p>
         </mat-card-content>
         <mat-card-actions>
-            <button mat-button class="left-btn">&lt; PREV</button>
-            <button mat-button class="right-btn">NEXT &gt;</button>
+            <button mat-button [disabled]="ticket.id == 1" (click)="goPrev(ticket.id)" class="left-btn">&lt; PREV</button>
+            <button mat-button [disabled]="ticket.id == count.value" (click)="goNext(ticket.id)" class="right-btn">NEXT &gt;</button>
         </mat-card-actions>
     </mat-card>
 </div>
 <p class="no-tickets-message">{{message}}</p>
+<router-outlet></router-outlet>
