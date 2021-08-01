@@ -15,12 +15,14 @@ import { AppComponent } from './app.component';
 import { TicketsComponent } from './tickets/tickets.component';
 import { TicketComponent } from './ticket/ticket.component';
 import { ITS_JUST_ANGULAR } from '@angular/core/src/r3_symbols';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TicketsComponent,
-    TicketComponent
+    TicketComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
