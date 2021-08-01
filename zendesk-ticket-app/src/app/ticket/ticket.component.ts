@@ -12,6 +12,7 @@ import { TicketsService } from '../services/tickets.service';
 export class TicketComponent implements OnInit {
 
   ticket!: TicketResponseModel;
+  message: string = "";
 
   constructor(private ticketsService: TicketsService, private route: ActivatedRoute, private location: Location) { }
 
@@ -23,7 +24,6 @@ export class TicketComponent implements OnInit {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.ticketsService.getTicket(id).subscribe(s => {
       this.ticket = s;
-      console.log(this.ticket);
     })
   }
 

@@ -1,0 +1,12 @@
+#ticket-card {
+    overflow-x: hidden;
+    width: 90%;
+}
+
+.left-btn {
+    float: left;
+}
+
+.right-btn {
+    float: right;
+}

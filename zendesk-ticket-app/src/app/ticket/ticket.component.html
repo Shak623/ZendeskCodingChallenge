@@ -1,1 +1,17 @@
-<p class="table-header">ticket works!</p>
+<h1 class="table-header" *ngIf="this.ticket">Ticket {{ticket.id}} Details</h1>
+<div class="center-page">
+    <mat-card id="ticket-card" *ngIf="this.ticket">
+        <mat-card-header>
+            <mat-card-title>Ticket {{ticket.id}}</mat-card-title>
+            <mat-card-subtitle>{{ticket.subject}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <p>{{ticket.description}}</p>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-button class="left-btn">&lt; PREV</button>
+            <button mat-button class="right-btn">NEXT &gt;</button>
+        </mat-card-actions>
+    </mat-card>
+</div>
+<p class="no-tickets-message">{{message}}</p>
