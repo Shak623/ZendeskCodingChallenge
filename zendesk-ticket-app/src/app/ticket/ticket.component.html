@@ -1,19 +1,26 @@
-<h1 class="page-header" *ngIf="this.ticket">Ticket {{ticket.id}} Details</h1>
-<button mat-button (click)="goBack()">&lt; Back to Tickets</button>
-<div class="center-page">
-    <mat-card id="ticket-card" *ngIf="this.ticket && this.count">
-        <mat-card-header>
-            <mat-card-title>Ticket {{ticket.id}}</mat-card-title>
-            <mat-card-subtitle>{{ticket.subject}}</mat-card-subtitle>
-        </mat-card-header>
-        <mat-card-content>
-            <p>{{ticket.description}}</p>
-        </mat-card-content>
-        <mat-card-actions>
-            <button mat-button [disabled]="ticket.id == 1" (click)="goPrev(ticket.id)" class="left-btn">&lt; PREV</button>
-            <button mat-button [disabled]="ticket.id == count.value" (click)="goNext(ticket.id)" class="right-btn">NEXT &gt;</button>
-        </mat-card-actions>
-    </mat-card>
+<div class="d-flex justify-content-center" *ngIf="displayLoading">
+    <div class="spinner-border" role="status">
+        <span class="sr-only" id="loading"></span>
+    </div>
 </div>
-<p class="no-tickets-message">{{message}}</p>
+<div [hidden]="displayLoading">
+    <h1 class="page-header" *ngIf="this.ticket">Ticket {{ticket.id}} Details</h1>
+    <button mat-button (click)="goBack()">&lt; Back to Tickets</button>
+    <div class="center-page">
+        <mat-card id="ticket-card" *ngIf="this.ticket && this.count">
+            <mat-card-header>
+                <mat-card-title>Ticket {{ticket.id}}</mat-card-title>
+                <mat-card-subtitle>{{ticket.subject}}</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <p>{{ticket.description}}</p>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-button [disabled]="ticket.id == 1" (click)="goPrev(ticket.id)" class="left-btn">&lt; PREV</button>
+                <button mat-button [disabled]="ticket.id == count.value" (click)="goNext(ticket.id)" class="right-btn">NEXT &gt;</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+    <p class="no-tickets-message">{{message}}</p>
+</div>
 <router-outlet></router-outlet>

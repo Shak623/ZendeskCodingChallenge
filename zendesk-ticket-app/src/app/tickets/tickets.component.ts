@@ -16,6 +16,7 @@ export class TicketsComponent implements OnInit, AfterViewInit {
   ticketsArray: TicketResponseModel[] = [];
   displayedColumns: string[] = ["id", "subject", "updated_at", "status"];
   emptyMessage: string = ""
+  displayLoading: boolean = true;
 
   dataSource: MatTableDataSource<TicketResponseModel> = new MatTableDataSource();
 
@@ -26,6 +27,9 @@ export class TicketsComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.ticketsService.getTickets().subscribe(s => {
+      if (s) {
+        this.hideLoader();
+      }
       this.ticketsArray = s;
       if (this.ticketsArray.length == 0){
         this.emptyMessage = "There are no tickets for your account.";
@@ -41,6 +45,10 @@ export class TicketsComponent implements OnInit, AfterViewInit {
 
   displayData(id: number) {
     this.router.navigate([`../ticket/${id}`]);
+  }
+
+  hideLoader() {
+    this.displayLoading = false;
   }
 
 }
