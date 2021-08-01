@@ -40,9 +40,7 @@ export class TicketsComponent implements OnInit, AfterViewInit {
   }
 
   displayData(id: number) {
-    console.log(id);
     this.router.navigate([`../ticket/${id}`]);
-    console.log(this.router);
   }
 
 }

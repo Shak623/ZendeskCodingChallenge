@@ -16,4 +16,9 @@ export class TicketsService {
     const url = `${environment.apiUrl}/api/tickets`
     return this.httpClient.get<TicketResponseModel[]>(url);
   }
+
+  getTicket(id: number): Observable<TicketResponseModel> {
+    const url = `${environment.apiUrl}/api/ticket/${id}`
+    return this.httpClient.get<TicketResponseModel>(url);
+  }
 }
