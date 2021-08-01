@@ -3,7 +3,11 @@
         <span class="sr-only" id="loading"></span>
     </div>
 </div>
-<div [hidden]="displayLoading">
+<div *ngIf="error">
+    <h1 class="page-header">Something Went Wrong...</h1>
+    <p class="no-tickets-message">{{message}}</p>
+</div>
+<div [hidden]="displayLoading || error">
     <h1 class="page-header" *ngIf="this.ticket">Ticket {{ticket.id}} Details</h1>
     <button mat-button (click)="goBack()">&lt; Back to Tickets</button>
     <div class="center-page">
@@ -21,6 +25,5 @@
             </mat-card-actions>
         </mat-card>
     </div>
-    <p class="no-tickets-message">{{message}}</p>
 </div>
 <router-outlet></router-outlet>

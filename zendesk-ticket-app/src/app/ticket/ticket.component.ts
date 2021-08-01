@@ -1,6 +1,5 @@
-import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { CountResponseModel } from '../models/CountResponseModel';
 import { TicketResponseModel } from '../models/TicketResponseModel';
 import { TicketsService } from '../services/tickets.service';
@@ -16,8 +15,9 @@ export class TicketComponent implements OnInit {
   count!: CountResponseModel;
   message: string = "";
   displayLoading: boolean = true;
+  error: boolean = false;
 
-  constructor(private ticketsService: TicketsService, private route: ActivatedRoute, private location: Location) { }
+  constructor(private ticketsService: TicketsService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.getCount();
@@ -33,7 +33,13 @@ export class TicketComponent implements OnInit {
       if (s) {
         this.hideLoader();    // hide loading spinner
       }
-      this.ticket = s;
+      if (s.error) {
+        this.errorHasOccurred();
+        this.setMessage(`An error has occurred: ${s.error}`);
+      }
+      else {
+        this.ticket = s;
+      }
     })
   }
 
@@ -70,6 +76,16 @@ export class TicketComponent implements OnInit {
   // hide the loading spinner
   hideLoader(): void {
     this.displayLoading = false;
+  }
+
+  // set message to msg
+  setMessage(msg: string) {
+    this.message = msg;
+  }
+
+  // set error to true
+  errorHasOccurred() {
+    this.error = true;
   }
 
 }
