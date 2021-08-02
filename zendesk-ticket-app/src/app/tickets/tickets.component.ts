@@ -18,6 +18,7 @@ export class TicketsComponent implements OnInit, AfterViewInit {
   message: string = ""
   displayLoading: boolean = true;
   error: boolean = false;
+  errorStatus: number = 0;
 
   dataSource: MatTableDataSource<TicketResponseModel> = new MatTableDataSource();
 
@@ -33,7 +34,20 @@ export class TicketsComponent implements OnInit, AfterViewInit {
       }
       if (s.error) {
         this.errorHasOccurred();
-        this.setMessage(`An error has occurred: ${s.error}`);
+        this.setErrorStatus(s.status);
+        switch (s.error) {                              // Handle error messaging
+          case "APIConnectionError":
+            this.setMessage("There was an issue connecting to the API. \
+              Come back later and try again.");
+            break;
+          case "Couldn't authenticate you":
+            this.setMessage("You do not have authorization to view this site. \
+              Check to see that you have authorization and come back again.");
+            break;
+          default:
+            this.setMessage(`An error has occurred: ${s.error}`);
+            break;
+        }
       }
       else {
         this.ticketsArray = s;
@@ -64,6 +78,10 @@ export class TicketsComponent implements OnInit, AfterViewInit {
 
   setMessage(msg: string){
     this.message = msg;
+  }
+
+  setErrorStatus(status: number) {
+    this.errorStatus = status;
   }
 
 }

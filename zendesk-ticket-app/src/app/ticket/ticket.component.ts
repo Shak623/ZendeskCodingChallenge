@@ -16,6 +16,7 @@ export class TicketComponent implements OnInit {
   message: string = "";
   displayLoading: boolean = true;
   error: boolean = false;
+  errorStatus: number = 0;
 
   constructor(private ticketsService: TicketsService, private route: ActivatedRoute) { }
 
@@ -35,7 +36,20 @@ export class TicketComponent implements OnInit {
       }
       if (s.error) {
         this.errorHasOccurred();
-        this.setMessage(`An error has occurred: ${s.error}`);
+        this.setErrorStatus(s.status);
+        switch (s.error) {                              // Handle error messaging
+          case "APIConnectionError":
+            this.setMessage("There was an issue connecting to the API. \
+              Come back later and try again.");
+            break;
+          case "Couldn't authenticate you":
+            this.setMessage("You do not have authorization to view this site. \
+              Check to see that you have authorization and come back again.");
+            break;
+          default:
+            this.setMessage(`An error has occurred: ${s.error}`);
+            break;
+        }
       }
       else {
         this.ticket = s;
@@ -86,6 +100,11 @@ export class TicketComponent implements OnInit {
   // set error to true
   errorHasOccurred() {
     this.error = true;
+  }
+
+  // set the error status
+  setErrorStatus(status: number) {
+    this.errorStatus = status;
   }
 
 }

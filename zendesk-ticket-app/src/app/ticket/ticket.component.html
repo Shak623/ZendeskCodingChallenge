@@ -4,8 +4,7 @@
     </div>
 </div>
 <div *ngIf="error">
-    <h1 class="page-header">Something Went Wrong...</h1>
-    <p class="no-tickets-message">{{message}}</p>
+    <app-error-message [message]="message" [status]="errorStatus"></app-error-message>
 </div>
 <div [hidden]="displayLoading || error">
     <h1 class="page-header" *ngIf="this.ticket">Ticket {{ticket.id}} Details</h1>
