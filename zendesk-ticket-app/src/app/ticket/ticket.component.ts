@@ -46,6 +46,9 @@ export class TicketComponent implements OnInit {
             this.setMessage("You do not have authorization to view this site. \
               Check to see that you have authorization and come back again.");
             break;
+          case "RecordNotFound":
+            this.setMessage("Could not find the ticket you are looking for. It may not exist.");
+            break;
           default:
             this.setMessage(`An error has occurred: ${s.error}`);
             break;
