@@ -29,7 +29,7 @@ export class TicketComponent implements OnInit {
   Get the ticket with id from route params
   */
   getTicket(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
+    const id = Number(this.route.snapshot.params.id);
     this.ticketsService.getTicket(id).subscribe(s => {
       if (s) {
         this.hideLoader();    // hide loading spinner
