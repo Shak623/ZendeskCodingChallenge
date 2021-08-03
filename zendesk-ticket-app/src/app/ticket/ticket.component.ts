@@ -31,9 +31,6 @@ export class TicketComponent implements OnInit {
   getTicket(): void {
     const id = Number(this.route.snapshot.params.id);
     this.ticketsService.getTicket(id).subscribe(s => {
-      if (s) {
-        this.hideLoader();    // hide loading spinner
-      }
       if (s.error) {
         this.errorHasOccurred();
         this.setErrorStatus(s.status);
@@ -55,6 +52,7 @@ export class TicketComponent implements OnInit {
       else {
         this.ticket = s;
       }
+      this.hideLoader();
     })
   }
 

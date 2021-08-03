@@ -29,9 +29,6 @@ export class TicketsComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.ticketsService.getTickets().subscribe(s => {
-      if (s) {
-        this.hideLoader();
-      }
       if (s.error) {
         this.errorHasOccurred();
         this.setErrorStatus(s.status);
@@ -56,6 +53,7 @@ export class TicketsComponent implements OnInit, AfterViewInit {
         }
         this.dataSource.data = this.ticketsArray;
       }
+      this.hideLoader();
     })
   }
 
