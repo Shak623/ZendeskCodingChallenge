@@ -65,4 +65,4 @@ I have not set up unit tests for the node server at this time.
 # Potential Issues
 If you experience an authentication error, make sure you have the `.env` file as I have mentioned before. If you do not have one, be sure to contact me and I will provide you with the `.env` file.
 
-If you are seeing a loading screen for quite a while, then make sure you have the node server running. See [Running the Node Server](#running-the-node-server)
+If you experience an http error response (status 0), then make sure you have the node server running. See [Running the Node Server](#running-the-node-server)
