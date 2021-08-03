@@ -40,3 +40,23 @@ export const mockTicketModel1: TicketResponseModel = {
     via: "",
     via_followup_source_id: 0
 }
+
+export const mockErrorModel1: any = {
+    error: "APIConnectionError",
+    status: 1
+}
+
+export const mockErrorModel2: any = {
+    error: "Couldn't authenticate you",
+    status: 2
+}
+
+export const mockErrorModel3: any = {
+    error: "RecordNotFound",
+    status: 3
+}
+
+export const mockErrorModel4: any = {
+    error: "InvalidEndpoint",
+    status: 4
+}

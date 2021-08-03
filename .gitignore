@@ -10,6 +10,7 @@
 # dependencies
 /node_modules
 /zendesk-ticket-app/node_modules
+/zendesk-ticket-app/coverage
 
 # profiling files
 chrome-profiler-events*.json

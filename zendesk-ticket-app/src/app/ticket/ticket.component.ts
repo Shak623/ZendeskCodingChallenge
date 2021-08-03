@@ -39,12 +39,10 @@ export class TicketComponent implements OnInit {
         this.setErrorStatus(s.status);
         switch (s.error) {                              // Handle error messaging
           case "APIConnectionError":
-            this.setMessage("There was an issue connecting to the API. \
-              Come back later and try again.");
+            this.setMessage("There was an issue connecting to the API. Come back later and try again.");
             break;
           case "Couldn't authenticate you":
-            this.setMessage("You do not have authorization to view this site. \
-              Check to see that you have authorization and come back again.");
+            this.setMessage("You do not have authorization to view this site. Check to see that you have authorization and come back again.");
             break;
           case "RecordNotFound":
             this.setMessage("Could not find the ticket you are looking for. It may not exist.");
