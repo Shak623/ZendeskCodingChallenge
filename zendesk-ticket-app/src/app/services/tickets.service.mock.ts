@@ -16,6 +16,21 @@ export class MockTicketsService {
     }
 }
 
+export class MockTicketsServiceEmptyTickets {
+    getTickets(): Observable<any> {
+        return of([]);
+    }
+
+    getTicket(): Observable<any> {
+        return of(mockTicketModel1);
+    }
+
+    getCount(): Observable<any> {
+        return of(mockCountModel1);
+    }
+}
+
+
 export class MockTicketsServiceAPIError {
     getTickets(): Observable<any> {
         return of(mockErrorModel1);

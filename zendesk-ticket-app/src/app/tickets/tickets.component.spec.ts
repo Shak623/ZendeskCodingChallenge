@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { mockErrorModel4 } from '../models/TicketResponseModel.mocks';
 import { TicketsService } from '../services/tickets.service';
-import { MockTicketsService, MockTicketsServiceAPIError, MockTicketsServiceAuthError, MockTicketsServiceDefaultError } from '../services/tickets.service.mock';
+import { MockTicketsService, MockTicketsServiceAPIError, MockTicketsServiceAuthError, MockTicketsServiceDefaultError, MockTicketsServiceEmptyTickets } from '../services/tickets.service.mock';
 
 import { TicketsComponent } from './tickets.component';
 
@@ -122,4 +122,14 @@ describe('TicketsComponent', () => {
     expect(component.errorStatus).toEqual(4);
     expect(component.message).toBe(`An error has occurred: ${mockErrorModel4.error}`);
   })
+
+  it('should get empty tickets array', () => {
+    TestBed.overrideProvider(TicketsService, {useValue: new MockTicketsServiceEmptyTickets});
+    let obj = compileTestBed();
+    fixture = obj.fixture;
+    component = obj.component;
+    component.getTickets();
+    expect(component.ticketsArray.length).toEqual(0);
+    expect(component.message).toBe("There are no tickets for your account.");
+  })  
 });
