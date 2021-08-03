@@ -1,8 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
+import { mockErrorModel4 } from '../models/TicketResponseModel.mocks';
 import { TicketsService } from '../services/tickets.service';
-import { MockTicketsService } from '../services/tickets.service.mock';
+import { MockTicketsService, MockTicketsServiceAPIError, MockTicketsServiceAuthError, MockTicketsServiceDefaultError } from '../services/tickets.service.mock';
 
 import { TicketsComponent } from './tickets.component';
 
@@ -88,5 +89,37 @@ describe('TicketsComponent', () => {
     expect(component.errorStatus).toEqual(status);
   })
 
+  //Test getTickets()
+  it('should get API connection error', () => {
+    TestBed.overrideProvider(TicketsService, {useValue: new MockTicketsServiceAPIError});
+    let obj = compileTestBed();
+    fixture = obj.fixture;
+    component = obj.component;
+    component.getTickets();
+    expect(component.error).toBeTruthy();
+    expect(component.errorStatus).toEqual(1);
+    expect(component.message).toBe("There was an issue connecting to the API. Come back later and try again.");
+  })
 
+  it('should get authenication error', () => {
+    TestBed.overrideProvider(TicketsService, {useValue: new MockTicketsServiceAuthError});
+    let obj = compileTestBed();
+    fixture = obj.fixture;
+    component = obj.component;
+    component.getTickets();
+    expect(component.error).toBeTruthy();
+    expect(component.errorStatus).toEqual(2);
+    expect(component.message).toBe("You do not have authorization to view this site. Check to see that you have authorization and come back again.");
+  })
+
+  it('should get default error', () => {
+    TestBed.overrideProvider(TicketsService, {useValue: new MockTicketsServiceDefaultError});
+    let obj = compileTestBed();
+    fixture = obj.fixture;
+    component = obj.component;
+    component.getTickets();
+    expect(component.error).toBeTruthy();
+    expect(component.errorStatus).toEqual(4);
+    expect(component.message).toBe(`An error has occurred: ${mockErrorModel4.error}`);
+  })
 });
