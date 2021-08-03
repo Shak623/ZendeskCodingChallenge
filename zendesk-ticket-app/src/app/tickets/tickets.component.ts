@@ -28,6 +28,15 @@ export class TicketsComponent implements OnInit, AfterViewInit {
   constructor(private ticketsService: TicketsService, private router: Router) { }
 
   ngOnInit(): void {
+    this.getTickets();
+  }
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
+
+  getTickets(): void {
     this.ticketsService.getTickets().subscribe(s => {
       if (s.error) {
         this.errorHasOccurred();
@@ -55,11 +64,6 @@ export class TicketsComponent implements OnInit, AfterViewInit {
       }
       this.hideLoader();
     })
-  }
-
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
   }
 
   displayData(id: number) {
