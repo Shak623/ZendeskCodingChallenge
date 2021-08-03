@@ -61,6 +61,11 @@ export class TicketsComponent implements OnInit, AfterViewInit {
         this.dataSource.data = this.ticketsArray;
       }
       this.hideLoader();
+    }, (err) => {
+      this.errorHasOccurred();
+      this.setErrorStatus(err.status);
+      this.hideLoader();
+      this.setMessage("The server is currently down. Please come back later and try again.");
     })
   }
 

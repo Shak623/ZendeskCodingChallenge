@@ -62,6 +62,12 @@ export class TicketComponent implements OnInit {
   getCount(): void {
     this.ticketsService.getCount().subscribe(s => {
       this.count = s;
+    }, 
+    (err) => {
+      this.errorHasOccurred();
+      this.setErrorStatus(err.status);
+      this.hideLoader();
+      this.setMessage("The server is currently down. Please come back later and try again.")
     })
   }
 
