@@ -1,9 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TicketComponent } from './ticket.component';
-import { mockTicketModel1 } from '../models/TicketResponseModel.mocks';
+import { mockErrorModel4, mockTicketModel1 } from '../models/TicketResponseModel.mocks';
 import { mockCountModel1 } from '../models/CountResponseModel.mocks';
-import { MockTicketsService, MockTicketsServiceAPIError } from '../services/tickets.service.mock';
+import { MockTicketsService, MockTicketsServiceAPIError, MockTicketsServiceAuthError, MockTicketsServiceDefaultError, MockTicketsServiceNotFoundError } from '../services/tickets.service.mock';
 import { TicketsService } from '../services/tickets.service';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ActivatedRoute } from '@angular/router';
@@ -146,5 +146,41 @@ describe('TicketComponent', () => {
     expect(component.error).toBeTruthy();
     expect(component.errorStatus).toEqual(1);
     expect(component.message).toBe("There was an issue connecting to the API. Come back later and try again.");
+  })
+
+  it('should get authenication error', () => {
+    TestBed.overrideProvider(TicketsService, {useValue: new MockTicketsServiceAuthError});
+    let obj = compileTestBed();
+    route = obj.route;
+    fixture = obj.fixture;
+    component = obj.component;
+    component.getTicket();
+    expect(component.error).toBeTruthy();
+    expect(component.errorStatus).toEqual(2);
+    expect(component.message).toBe("You do not have authorization to view this site. Check to see that you have authorization and come back again.");
+  })
+
+  it('should get record not found error', () => {
+    TestBed.overrideProvider(TicketsService, {useValue: new MockTicketsServiceNotFoundError});
+    let obj = compileTestBed();
+    route = obj.route;
+    fixture = obj.fixture;
+    component = obj.component;
+    component.getTicket();
+    expect(component.error).toBeTruthy();
+    expect(component.errorStatus).toEqual(3);
+    expect(component.message).toBe("Could not find the ticket you are looking for. It may not exist.");
+  })
+
+  it('should get default error', () => {
+    TestBed.overrideProvider(TicketsService, {useValue: new MockTicketsServiceDefaultError});
+    let obj = compileTestBed();
+    route = obj.route;
+    fixture = obj.fixture;
+    component = obj.component;
+    component.getTicket();
+    expect(component.error).toBeTruthy();
+    expect(component.errorStatus).toEqual(4);
+    expect(component.message).toBe(`An error has occurred: ${mockErrorModel4.error}`);
   })
 });
