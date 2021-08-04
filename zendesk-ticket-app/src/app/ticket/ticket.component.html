@@ -10,7 +10,7 @@
     <h1 class="page-header" *ngIf="this.ticket">Ticket {{ticket.id}} Details</h1>
     <button mat-button (click)="goBack()">&lt; Back to Tickets</button>
     <div class="center-page">
-        <mat-card id="ticket-card" *ngIf="this.ticket && this.count">
+        <mat-card id="ticket-card" *ngIf="this.ticket && this.count" class="mat-elevation-z8">
             <mat-card-header>
                 <mat-card-title>Ticket {{ticket.id}}</mat-card-title>
                 <mat-card-subtitle>{{ticket.subject}}</mat-card-subtitle>
