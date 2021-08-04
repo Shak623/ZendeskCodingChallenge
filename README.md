@@ -54,9 +54,9 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 ### Angular Server
 
-To run tests on the angular server make sure you are in the zendesk-ticket-app directory. Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+To run tests on the angular server make sure you are in the zendesk-ticket-app directory. Run `ng test` in the zendesk-ticket-app directory to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-To see the code coverage of the angular server, run `ng test --no-watch --code-coverage`. This will create a coverage directory in the zendesk-ticket-app, and in this dirctory is an index.html file that you can open with a live server.
+To see the code coverage of the angular server, after running `ng test`, it will create a coverage directory in the zendesk-ticket-app. In this dirctory is an index.html file that you can open with a live server. `ng test` will also display a code summary in the terminal
 
 ### Node Server
 
